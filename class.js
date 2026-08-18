@@ -1,9 +1,9 @@
-let user = prompt("Who's there?");
+
+let user = "Admin";
+let pass = "TheMaster";
 
 if (user === "Admin") {              // outer if
-  let pass = prompt("Enter your password:");
-
-  if (pass === "TheMaster") {        // ← nested if (inside the outer if)
+  if (pass === "TheMaster") {        // nested if
     alert("Welcome!");
   } else {
     alert("Wrong password");
