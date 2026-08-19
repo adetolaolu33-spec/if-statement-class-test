@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My First Line of Code</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: #090014;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* animated aurora background */
+  .aurora {
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(circle at 20% 30%, #ff2ee6 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, #00f6ff 0%, transparent 40%),
+      radial-gradient(circle at 50% 80%, #7b2ff7 0%, transparent 45%),
+      radial-gradient(circle at 90% 70%, #ffd400 0%, transparent 35%);
+    filter: blur(60px) saturate(140%);
+    animation: drift 14s ease-in-out infinite alternate;
+    opacity: 0.85;
+  }
+
+  @keyframes drift {
+    0%   { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(8deg) scale(1.15); }
+    100% { transform: rotate(-6deg) scale(1.05); }
+  }
+
+  .grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 56px 64px;
+    border-radius: 24px;
+    background: rgba(15, 6, 34, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03) inset,
+      0 25px 80px rgba(0,0,0,0.55),
+      0 0 60px rgba(123,47,247,0.35);
+    max-width: 520px;
+    animation: rise 0.9s cubic-bezier(.2,.9,.25,1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00f6ff;
+    opacity: 0.8;
+    margin-bottom: 18px;
+  }
+
+  #message {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0 0 34px;
+    background: linear-gradient(90deg, #00f6ff, #ff2ee6 50%, #ffd400);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 5s linear infinite;
+  }
+
+  #message::after {
+    content: '▍';
+    color: #00f6ff;
+    animation: blink 1s step-end infinite;
+    -webkit-text-fill-color: #00f6ff;
+  }
+
+  @keyframes shimmer {
+    to { background-position: 200% center; }
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  button {
+    position: relative;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 16px 44px;
+    border: none;
+    border-radius: 999px;
+    color: #090014;
+    background: linear-gradient(90deg, #00f6ff, #ff2ee6);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 0 25px rgba(0,246,255,0.45), 0 0 45px rgba(255,46,230,0.25);
+  }
+
+  button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 35px rgba(0,246,255,0.7), 0 0 60px rgba(255,46,230,0.45);
+  }
+
+  button:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  button.pulse {
+    animation: pop 0.4s ease;
+  }
+
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="aurora"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="card">
+    <div class="eyebrow">// hello_world.js</div>
+    <p id="message">This is my first JavaScript code</p>
+    <button id="myButton">Click</button>
+  </div>
+
+  <script>
+    const messageEl = document.getElementById("message");
+    messageEl.textContent = "This won't be my last JavaScript code";
+    
+    const buttonEl = document.getElementById("myButton");
+    buttonEl.textContent = "Submit";
+  </script>
+
+</body>
+</html>
